@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <title>Стипендіальні програми — Центр професійної освіти св. Івана Боско</title>
+    <meta
+      name="description"
+      content="Офіційний портал стипендіальних програм учнів Центру професійної освіти св. Івана Боско у Львові на 2026–2027 навчальний рік."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap&subset=cyrillic"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Головна навігаційна шапка (рендериться динамічно через API /api/common) -->
+    <header id="app-header" class="site-header" role="banner"></header>
+
+    <!-- Основний динамічний контейнер контенту сторінки -->
+    <main id="app-content" class="site-content" role="main">
+      <!-- Стани завантаження / помилки / блоки сторінки генеруються JavaScript/TypeScript -->
+    </main>
+
+    <!-- Підвал сайту (рендериться з /api/common) -->
+    <footer id="app-footer" class="site-footer" role="contentinfo"></footer>
+
+    <!-- Контейнер для спливаючих сповіщень (Toasts) -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
