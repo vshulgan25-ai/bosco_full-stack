@@ -5,6 +5,7 @@ const STUDENT_PASSWORD = process.env.SEED_STUDENT_PASSWORD || 'Bosco2026!'
 
 async function seed() {
   const payload = await getPayload({ config })
+  const MAIN_SITE_URL = process.env.MAIN_SITE_URL || 'https://mnzbosco.org.ua/'
   payload.logger.info('Початок ініціалізації бази даних (Seeding) для Центру Боско...')
 
   // 1. Створення користувачів (Адміністратори, Редактори, Учні)
@@ -41,7 +42,7 @@ async function seed() {
     password: STUDENT_PASSWORD,
     firstName: 'Вероніка',
     lastName: 'Шульган',
-    group: 'IT-22',
+    group: 'IT-12',
     course: '2',
     phone: '+38 (098) 111-22-33',
     roles: ['student'],
@@ -51,7 +52,7 @@ async function seed() {
     password: STUDENT_PASSWORD,
     firstName: 'Тереза',
     lastName: 'Федаш',
-    group: 'IT-21',
+    group: 'IT-11',
     course: '2',
     phone: '+38 (097) 222-33-44',
     roles: ['student'],
@@ -61,7 +62,7 @@ async function seed() {
     password: STUDENT_PASSWORD,
     firstName: 'Богдан',
     lastName: 'Ковальчук',
-    group: 'AV-21',
+    group: 'A-11',
     course: '1',
     phone: '+38 (063) 333-44-55',
     roles: ['student'],
@@ -151,7 +152,7 @@ async function seed() {
   const sampleApplications = [
     {
       fullName: 'Шульган Вероніка Олександрівна',
-      group: 'IT-22',
+      group: 'IT-12',
       email: 'shulhan.veronika@bosco.local',
       phone: '+38 (098) 111-22-33',
       program: createdPrograms['tuition'].id,
@@ -163,7 +164,7 @@ async function seed() {
     },
     {
       fullName: 'Федаш Тереза Михайлівна',
-      group: 'IT-21',
+      group: 'IT-11',
       email: 'fedash.tereza@bosco.local',
       phone: '+38 (097) 222-33-44',
       program: createdPrograms['collegium'].id,
@@ -175,7 +176,7 @@ async function seed() {
     },
     {
       fullName: 'Ковальчук Богдан Ігорович',
-      group: 'AV-21',
+      group: 'A-11',
       email: 'kovalchuk.bohdan@bosco.local',
       phone: '+38 (063) 333-44-55',
       program: createdPrograms['cafe'].id,
@@ -221,7 +222,7 @@ async function seed() {
       ],
       ctaButton: {
         text: 'Перейти на основний сайт',
-        link: process.env.MAIN_SITE_URL || '#cta',
+        link: MAIN_SITE_URL,
       },
     },
   })
@@ -251,8 +252,6 @@ async function seed() {
     },
   })
   payload.logger.info('Глобальні налаштування Header/Footer оновлено.')
-
-  const MAIN_SITE_URL = process.env.MAIN_SITE_URL || '#cta'
 
   // 5. Створення головної сторінки з блоками
   const existingPage = await payload.find({
@@ -341,10 +340,17 @@ async function seed() {
       ],
     },
     {
+      blockType: 'apply-form',
+      badge: 'Онлайн реєстрація',
+      title: 'Подати заявку на стипендію 2026–2027',
+      description: 'Заповніть форму нижче, оберіть вашу академічну групу та програму стипендії, а також напишіть мотиваційний лист, у якому опишіть свої досягнення та потребу в отриманні допомоги.',
+      deadlineNotice: 'Термін прийому заявок: до 24 грудня 2026 року',
+      supportContact: 'З питаннями звертайтеся: scholarship@boscocenter.lviv.ua | +38 (032) 223-08-33',
+    },
+    {
       blockType: 'cta',
       badge: 'Основний сайт',
-      title: 'Готові подати заявку? Переходьте на основний сайт',
-      description: 'Це сайт-візитка: тут коротко про стипендії. Усе найважливіше — на основному сайті.',
+      title: 'Вже подали заявку? Переходьте на основний сайт',
       points: [
         { text: 'Подайте заявку на одну чи кілька стипендій онлайн' },
         { text: 'Стежте за статусом розгляду в особистому кабінеті' },
@@ -352,14 +358,6 @@ async function seed() {
       ],
       buttonText: 'Перейти на основний сайт',
       buttonLink: MAIN_SITE_URL,
-    },
-    {
-      blockType: 'apply-form',
-      badge: 'Онлайн реєстрація',
-      title: 'Подати заявку на стипендію 2026–2027',
-      description: 'Заповніть форму нижче, оберіть вашу академічну групу та програму стипендії, а також напишіть мотиваційний лист, у якому опишіть свої досягнення та потребу в отриманні допомоги.',
-      deadlineNotice: 'Термін прийому заявок: до 24 грудня 2026 року',
-      supportContact: 'З питаннями звертайтеся: scholarship@boscocenter.lviv.ua | +38 (032) 223-08-33',
     },
   ]
 

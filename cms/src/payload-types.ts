@@ -139,7 +139,7 @@ export interface User {
   lastName: string;
   patronymic?: string | null;
   roles: ('admin' | 'editor' | 'student')[];
-  group?: ('IT-21' | 'IT-22' | 'AV-21' | 'PO-22' | 'KP-21' | 'REM-21' | 'EL-22') | null;
+  group?: ('IT-11' | 'IT-12' | 'D-11' | 'K-11' | 'A-11' | 'A-12' | 'A-13' | 'M-11') | null;
   course?: ('1' | '2' | '3') | null;
   phone?: string | null;
   updatedAt: string;
@@ -188,7 +188,7 @@ export interface ScholarshipProgram {
 export interface Application {
   id: number;
   fullName: string;
-  group: 'IT-21' | 'IT-22' | 'AV-21' | 'PO-22' | 'KP-21' | 'REM-21' | 'EL-22';
+  group: 'IT-11' | 'IT-12' | 'D-11' | 'K-11' | 'A-11' | 'A-12' | 'A-13' | 'M-11';
   email: string;
   phone: string;
   program: number | ScholarshipProgram;

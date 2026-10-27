@@ -18,13 +18,12 @@ export const CtaBlock: Block = {
       label: 'Заголовок',
       type: 'text',
       required: true,
-      defaultValue: 'Готові подати заявку? Переходьте на основний сайт',
+      defaultValue: 'Вже подали заявку? Переходьте на основний сайт',
     },
     {
       name: 'description',
-      label: 'Короткий опис',
+      label: 'Короткий опис (необов’язково)',
       type: 'textarea',
-      defaultValue: 'На основному сайті можна зареєструватися, подати заявку на стипендію та стежити за її розглядом.',
     },
     {
       name: 'points',
@@ -52,7 +51,7 @@ export const CtaBlock: Block = {
       label: 'Адреса основного сайту',
       type: 'text',
       required: true,
-      defaultValue: 'https://',
+      defaultValue: 'https://mnzbosco.org.ua/',
     },
   ],
 }

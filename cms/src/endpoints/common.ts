@@ -39,7 +39,7 @@ export const getCommonDataHandler: PayloadHandler = async (req) => {
         ],
         ctaButton: headerData.ctaButton || {
           text: 'Перейти на основний сайт',
-          link: process.env.MAIN_SITE_URL || '#cta',
+          link: process.env.MAIN_SITE_URL || 'https://mnzbosco.org.ua/',
         },
       },
       footer: {

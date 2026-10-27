@@ -1,6 +1,6 @@
 import type { PayloadHandler } from 'payload'
 
-const VALID_GROUPS = ['IT-21', 'IT-22', 'AV-21', 'PO-22', 'KP-21', 'REM-21', 'EL-22']
+const VALID_GROUPS = ['IT-11', 'IT-12', 'D-11', 'K-11', 'A-11', 'A-12', 'A-13', 'M-11']
 
 export const submitApplicationHandler: PayloadHandler = async (req) => {
   try {

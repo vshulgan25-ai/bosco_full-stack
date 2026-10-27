@@ -139,6 +139,26 @@ export function renderHeader(container: HTMLElement, data: HeaderData, footer: F
     }
   })
 
+  const mobileCta = document.createElement('li')
+  mobileCta.className = 'nav-mobile-item'
+  const mobileCtaLink = cta.cloneNode(true) as HTMLAnchorElement
+  mobileCtaLink.classList.remove('header-cta')
+  mobileCtaLink.classList.add('nav-mobile-cta')
+  mobileCtaLink.addEventListener('click', closeMenu)
+  mobileCta.appendChild(mobileCtaLink)
+  navList.appendChild(mobileCta)
+
+  const mobileAdmin = document.createElement('li')
+  mobileAdmin.className = 'nav-mobile-item'
+  const mobileAdminLink = document.createElement('a')
+  mobileAdminLink.href = ADMIN_URL
+  mobileAdminLink.target = '_blank'
+  mobileAdminLink.rel = 'noopener noreferrer'
+  mobileAdminLink.className = 'nav-mobile-admin'
+  mobileAdminLink.textContent = 'Вхід для адміністратора'
+  mobileAdmin.appendChild(mobileAdminLink)
+  navList.appendChild(mobileAdmin)
+
   nav.appendChild(navList)
   burgerBtn.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('is-open')
@@ -146,7 +166,26 @@ export function renderHeader(container: HTMLElement, data: HeaderData, footer: F
     burgerBtn.setAttribute('aria-expanded', String(isOpen))
   })
 
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu()
+  })
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1000) closeMenu()
+  })
+
   inner.append(brand, nav, cta, burgerBtn)
   bar.appendChild(inner)
   container.append(topbar, bar)
+  watchHeaderHeight(container)
+}
+
+function watchHeaderHeight(header: HTMLElement): void {
+  const apply = (): void => {
+    document.documentElement.style.setProperty('--header-h', `${header.offsetHeight}px`)
+  }
+  apply()
+  if (header.dataset.watched === 'true') return
+  header.dataset.watched = 'true'
+  if (typeof ResizeObserver !== 'undefined') new ResizeObserver(apply).observe(header)
+  window.addEventListener('resize', apply)
 }
