@@ -4,14 +4,13 @@ import { submitApplication } from '../services/api'
 import { showToast } from '../components/Toast'
 
 const ACADEMIC_GROUPS: { label: string; value: AcademicGroup }[] = [
-  { label: 'ІТ-11', value: 'IT-11' },
-  { label: 'ІТ-12', value: 'IT-12' },
-  { label: 'Д-11', value: 'D-11' },
-  { label: 'К-11', value: 'K-11' },
-  { label: 'А-11', value: 'A-11' },
-  { label: 'А-12', value: 'A-12' },
-  { label: 'А-13', value: 'A-13' },
-  { label: 'М-11', value: 'M-11' },
+  { label: 'ІТ-21 (Програмне забезпечення)', value: 'IT-21' },
+  { label: 'ІТ-22 (Веб-розробка)', value: 'IT-22' },
+  { label: 'АВ-21 (Автомобільний транспорт)', value: 'AV-21' },
+  { label: 'ПО-22 (Перукарське мистецтво)', value: 'PO-22' },
+  { label: 'КП-21 (Кухарська справа)', value: 'KP-21' },
+  { label: 'РЕМ-21 (Ремонт та обслуговування)', value: 'REM-21' },
+  { label: 'ЕЛ-22 (Електротехніка)', value: 'EL-22' },
 ]
 
 const DEFAULT_PROGRAMS = [

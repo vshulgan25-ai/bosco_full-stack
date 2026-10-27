@@ -1,4 +1,5 @@
 import type { CommonApiResponse, NavItem } from '../types/api'
+import { ADMIN_URL } from '../services/api'
 
 type HeaderData = CommonApiResponse['header']
 type FooterData = CommonApiResponse['footer']
@@ -61,7 +62,14 @@ export function renderHeader(container: HTMLElement, data: HeaderData, footer: F
     socials.appendChild(a)
   })
 
-  topInner.append(contacts, socials)
+  const admin = document.createElement('a')
+  admin.href = ADMIN_URL
+  admin.target = '_blank'
+  admin.rel = 'noopener noreferrer'
+  admin.className = 'topbar-admin'
+  admin.textContent = 'Вхід для адміністратора'
+
+  topInner.append(contacts, socials, admin)
   topbar.appendChild(topInner)
 
   // ---------- Основна панель ----------

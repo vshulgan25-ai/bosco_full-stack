@@ -277,22 +277,6 @@ export interface Page {
         badge?: string | null;
         title: string;
         description?: string | null;
-        points?:
-          | {
-              text: string;
-              id?: string | null;
-            }[]
-          | null;
-        buttonText: string;
-        buttonLink: string;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'cta';
-      }
-    | {
-        badge?: string | null;
-        title: string;
-        description?: string | null;
         deadlineNotice?: string | null;
         supportContact?: string | null;
         id?: string | null;
@@ -564,23 +548,6 @@ export interface PagesSelect<T extends boolean = true> {
                     stepNumber?: T;
                     id?: T;
                   };
-              id?: T;
-              blockName?: T;
-            };
-        cta?:
-          | T
-          | {
-              badge?: T;
-              title?: T;
-              description?: T;
-              points?:
-                | T
-                | {
-                    text?: T;
-                    id?: T;
-                  };
-              buttonText?: T;
-              buttonLink?: T;
               id?: T;
               blockName?: T;
             };

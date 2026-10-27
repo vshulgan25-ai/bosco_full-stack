@@ -144,6 +144,12 @@ img { max-width: 100%; display: block; }
   color: var(--lime) !important; font-weight: 800; font-size: 0.85rem;
 }
 
+.topbar-admin {
+  border: 1px solid rgba(155, 201, 45, 0.7); border-radius: 9999px; padding: 3px 12px;
+  font-size: 0.72rem; font-weight: 600; white-space: nowrap; transition: all 0.2s ease;
+}
+.topbar a.topbar-admin:hover { background: var(--lime); color: #17310a; }
+
 .header-bar { background: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 82px; }
 
