@@ -29,7 +29,7 @@ const dirname = path.dirname(filename)
 // Налаштування списку дозволених CORS джерел для безпечної взаємодії з фронтендом
 const allowedOrigins = process.env.CORS_ORIGINS
   ? process.env.CORS_ORIGINS.split(',').map((url) => url.trim())
-  : ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173']
+  : ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173', 'https://bosco-scholarships-frontend.vercel.app']
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
