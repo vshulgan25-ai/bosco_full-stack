@@ -15,7 +15,14 @@ async function seed() {
       where: { email: { equals: email } },
       limit: 1,
     })
-    if (found.docs[0]) return found.docs[0]
+    if (found.docs[0]) {
+      const updated = await payload.update({
+        collection: 'users',
+        id: found.docs[0].id,
+        data: { ...data, loginAttempts: 0, lockUntil: null } as any,
+      })
+      return updated
+    }
     return payload.create({
       collection: 'users',
       data: { email, ...data } as any,

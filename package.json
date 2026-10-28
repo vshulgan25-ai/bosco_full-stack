@@ -16,6 +16,7 @@
     "build:cms": "npm run build --prefix cms",
     "build:frontend": "npm run build --prefix frontend",
     "seed": "npm run seed --prefix cms",
+    "reset-admin": "npm run reset-admin --prefix cms",
     "lint": "npm run lint --prefix cms && npm run lint --prefix frontend",
     "install:all": "npm install --legacy-peer-deps && npm install --prefix cms --legacy-peer-deps && npm install --prefix frontend"
   },
