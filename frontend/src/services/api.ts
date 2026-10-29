@@ -10,14 +10,15 @@ import { FALLBACK_COMMON, FALLBACK_PAGE } from './mockData'
 /** Базова адреса бекенду (у dev порожня → працює Vite proxy, у продакшені — URL CMS на Vercel) */
 const API_BASE_URL: string = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? ''
 
+/** Адреса адмін-панелі CMS (кнопка «Вхід для адміністратора») */
+export const ADMIN_URL: string = `${API_BASE_URL || 'http://localhost:3000'}/admin`
+
 /**
- * Адреса адмін-панелі CMS (кнопка «Вхід для адміністратора»).
- * У dev-режимі: http://localhost:3000/admin
- * У продакшені (Vercel): https://bosco-full-stack-cms.vercel.app/admin
+ * Чи показувати кнопку «Вхід для адміністратора».
+ * Локально: true (задається через VITE_SHOW_ADMIN_LINK=true у .env)
+ * На хостингу Vercel: false (змінна не задана або false)
  */
-export const ADMIN_URL: string = API_BASE_URL
-  ? `${API_BASE_URL}/admin`
-  : 'http://localhost:3000/admin'
+export const SHOW_ADMIN_LINK: boolean = import.meta.env.VITE_SHOW_ADMIN_LINK === 'true'
 
 /** Демо-режим: тільки якщо явно ввімкнено VITE_USE_MOCK=true (для презентації без бекенду) */
 const USE_MOCK: boolean = import.meta.env.VITE_USE_MOCK === 'true'

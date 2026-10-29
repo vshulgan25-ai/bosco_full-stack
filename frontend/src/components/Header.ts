@@ -1,5 +1,5 @@
 import type { CommonApiResponse, NavItem } from '../types/api'
-import { ADMIN_URL } from '../services/api'
+import { ADMIN_URL, SHOW_ADMIN_LINK } from '../services/api'
 
 type HeaderData = CommonApiResponse['header']
 type FooterData = CommonApiResponse['footer']
@@ -62,14 +62,18 @@ export function renderHeader(container: HTMLElement, data: HeaderData, footer: F
     socials.appendChild(a)
   })
 
-  const admin = document.createElement('a')
-  admin.href = ADMIN_URL
-  admin.target = '_blank'
-  admin.rel = 'noopener noreferrer'
-  admin.className = 'topbar-admin'
-  admin.textContent = 'Вхід для адміністратора'
-
-  topInner.append(contacts, socials, admin)
+  // Показуємо кнопку адміна лише якщо VITE_SHOW_ADMIN_LINK=true (локально)
+  if (SHOW_ADMIN_LINK) {
+    const admin = document.createElement('a')
+    admin.href = ADMIN_URL
+    admin.target = '_blank'
+    admin.rel = 'noopener noreferrer'
+    admin.className = 'topbar-admin'
+    admin.textContent = 'Вхід для адміністратора'
+    topInner.append(contacts, socials, admin)
+  } else {
+    topInner.append(contacts, socials)
+  }
   topbar.appendChild(topInner)
 
   // ---------- Основна панель ----------
@@ -148,16 +152,19 @@ export function renderHeader(container: HTMLElement, data: HeaderData, footer: F
   mobileCta.appendChild(mobileCtaLink)
   navList.appendChild(mobileCta)
 
-  const mobileAdmin = document.createElement('li')
-  mobileAdmin.className = 'nav-mobile-item'
-  const mobileAdminLink = document.createElement('a')
-  mobileAdminLink.href = ADMIN_URL
-  mobileAdminLink.target = '_blank'
-  mobileAdminLink.rel = 'noopener noreferrer'
-  mobileAdminLink.className = 'nav-mobile-admin'
-  mobileAdminLink.textContent = 'Вхід для адміністратора'
-  mobileAdmin.appendChild(mobileAdminLink)
-  navList.appendChild(mobileAdmin)
+  // Показуємо посилання адміна в мобільному меню лише локально
+  if (SHOW_ADMIN_LINK) {
+    const mobileAdmin = document.createElement('li')
+    mobileAdmin.className = 'nav-mobile-item'
+    const mobileAdminLink = document.createElement('a')
+    mobileAdminLink.href = ADMIN_URL
+    mobileAdminLink.target = '_blank'
+    mobileAdminLink.rel = 'noopener noreferrer'
+    mobileAdminLink.className = 'nav-mobile-admin'
+    mobileAdminLink.textContent = 'Вхід для адміністратора'
+    mobileAdmin.appendChild(mobileAdminLink)
+    navList.appendChild(mobileAdmin)
+  }
 
   nav.appendChild(navList)
   burgerBtn.addEventListener('click', () => {
