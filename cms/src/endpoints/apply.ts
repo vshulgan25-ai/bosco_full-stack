@@ -60,22 +60,49 @@ export const submitApplicationHandler: PayloadHandler = async (req) => {
       )
     }
 
-    // 2. Перевірка наявності програми
-    let targetProgramId = program
-    // Якщо передано назву виду програми (kind), знаходимо її id
-    if (typeof program === 'string' && isNaN(Number(program)) && program.length < 20) {
-      const foundProgram = await payload.find({
+    // 2. Знайти реальний числовий id програми за kind або за id
+    let targetProgramId: number | string | null = null
+
+    // Спочатку шукаємо за kind (tuition, collegium, тощо)
+    const byKind = await payload.find({
+      collection: 'scholarship-programs',
+      where: { kind: { equals: program } },
+      limit: 1,
+    })
+
+    if (byKind.docs.length > 0) {
+      targetProgramId = byKind.docs[0].id
+    } else {
+      // Якщо не знайдено за kind — пробуємо шукати за id напряму
+      try {
+        const byId = await payload.findByID({
+          collection: 'scholarship-programs',
+          id: program,
+        })
+        if (byId) {
+          targetProgramId = byId.id
+        }
+      } catch {
+        // Програма з таким id не існує
+      }
+    }
+
+    // Якщо програму не знайдено взагалі — беремо першу доступну
+    if (!targetProgramId) {
+      const anyProgram = await payload.find({
         collection: 'scholarship-programs',
-        where: {
-          kind: {
-            equals: program,
-          },
-        },
         limit: 1,
       })
-      if (foundProgram.docs.length > 0) {
-        targetProgramId = foundProgram.docs[0].id
+      if (anyProgram.docs.length > 0) {
+        targetProgramId = anyProgram.docs[0].id
       }
+    }
+
+    if (!targetProgramId) {
+      return Response.json(
+        { success: false, field: 'program', error: 'Стипендіальна програма не знайдена. Спробуйте пізніше.' },
+        { status: 422 }
+      )
     }
 
     // 3. Збереження заявки в базу даних
