@@ -39,6 +39,9 @@ const allowedOrigins = Array.from(
       'http://localhost:3000',
       'http://localhost:5173',
       'http://127.0.0.1:5173',
+      // Хостинг фронтенду на Vercel — завжди дозволяємо
+      'https://bosco-full-stack-front.vercel.app',
+      'https://bosco-scholarships-frontend.vercel.app',
     ]
       .map(clean)
       .filter(Boolean)
