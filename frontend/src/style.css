@@ -495,48 +495,8 @@ body { padding-top: var(--header-h); overflow-x: hidden; }
 .toast__close:hover { color: #000; }
 
 /* ==========================================================================
-   АДАПТИВНІСТЬ
+   АДАПТИВНІСТЬ — всі медіазапити зібрані в кінці файлу
    ========================================================================== */
-@media (max-width: 1024px) {
-  .hero-title { font-size: 2.1rem; }
-  .about-features-grid { grid-template-columns: 1fr; }
-  .benefits-steps-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .header-nav .nav-list { gap: 20px; }
-}
-
-@media (max-width: 1180px) {
-  .header-nav .nav-list { gap: 18px; }
-  .nav-link { font-size: 0.74rem; }
-  .header-cta { padding: 9px 14px; font-size: 0.72rem; }
-}
-
-@media (max-width: 1000px) {
-  :root { --header-h: 68px; }
-  .topbar { display: none; }
-  .header-inner { height: 68px; }
-  .header-logo { height: 42px; }
-  .header-cta { display: none; }
-  .header-burger { display: flex; margin-left: auto; }
-
-  .header-nav {
-    display: none; position: fixed; left: 0; right: 0; top: var(--header-h); margin: 0;
-    background: #fff; padding: 12px 24px 24px; box-shadow: var(--shadow-md);
-    max-height: calc(100vh - var(--header-h)); max-height: calc(100dvh - var(--header-h)); overflow-y: auto;
-  }
-  .header-nav.is-open { display: block; }
-  .header-nav .nav-list { flex-direction: column; gap: 0; }
-  .header-nav .nav-list li { border-bottom: 1px solid var(--border); }
-  .nav-link { display: block; padding: 14px 0; font-size: 0.9rem; border-bottom: none; }
-  .nav-mobile-item { display: block; border-bottom: none !important; padding-top: 14px; }
-  .nav-mobile-cta { display: flex; width: 100%; }
-  .nav-mobile-admin {
-    display: block; text-align: center; color: var(--brand); font-size: 0.82rem; font-weight: 600;
-    text-decoration: none; padding: 10px 0;
-  }
-}
-
-@media (max-width: 768px) { .cta-title { font-size: 1.5rem; } }
 
 /* ==========================================================================
    ФОРМА ЗАЯВКИ
@@ -686,6 +646,9 @@ body { padding-top: var(--header-h); overflow-x: hidden; }
 /* ==========================================================================
    АДАПТИВНІСТЬ
    ========================================================================== */
+/* ==========================================================================
+   АДАПТИВНІСТЬ
+   ========================================================================== */
 @media (max-width: 1024px) {
   .hero-title { font-size: 2.1rem; }
   .about-features-grid { grid-template-columns: 1fr; }
@@ -700,21 +663,40 @@ body { padding-top: var(--header-h); overflow-x: hidden; }
   .header-cta { padding: 9px 14px; font-size: 0.72rem; }
 }
 
-@media (max-width: 860px) {
-  .topbar-inner { justify-content: center; gap: 14px; padding-top: 6px; padding-bottom: 6px; }
-  .topbar-contacts { justify-content: center; gap: 6px 16px; }
-
+@media (max-width: 1000px) {
+  :root { --header-h: 68px; }
+  .topbar { display: none; }
   .header-inner { height: 68px; }
   .header-logo { height: 42px; }
-
-  .header-nav {
-    display: none; position: absolute; left: 0; right: 0; top: 100%;
-    background: #fff; padding: 20px 24px 24px; box-shadow: var(--shadow-md); margin: 0;
-  }
-  .header-nav.is-open { display: block; }
-  .header-nav .nav-list { flex-direction: column; gap: 14px; }
   .header-cta { display: none; }
   .header-burger { display: flex; margin-left: auto; }
+
+  /* Мобільне меню — фіксоване під хедером, не "плаває" */
+  .header-nav {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--header-h);
+    margin: 0;
+    background: #fff;
+    padding: 12px 24px 24px;
+    box-shadow: var(--shadow-md);
+    max-height: calc(100vh - var(--header-h));
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    z-index: 999;
+  }
+  .header-nav.is-open { display: block; }
+  .header-nav .nav-list { flex-direction: column; gap: 0; }
+  .header-nav .nav-list li { border-bottom: 1px solid var(--border); }
+  .nav-link { display: block; padding: 14px 0; font-size: 0.9rem; border-bottom: none; }
+  .nav-mobile-item { display: block; border-bottom: none !important; padding-top: 14px; }
+  .nav-mobile-cta { display: flex; width: 100%; }
+  .nav-mobile-admin {
+    display: block; text-align: center; color: var(--brand); font-size: 0.82rem; font-weight: 600;
+    text-decoration: none; padding: 10px 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -734,4 +716,5 @@ body { padding-top: var(--header-h); overflow-x: hidden; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .skeleton-stats { grid-template-columns: 1fr; }
+  .cta-title { font-size: 1.5rem; }
 }
